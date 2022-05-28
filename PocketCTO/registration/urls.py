@@ -2,10 +2,11 @@ from django.urls import path, include
 from rest_framework import routers
 from . import views
 
-router = routers.DefaultRouter()
-router.register()
+from rest_framework import routers
 
-urlpatterns = [
-    path('', views.index, name="index"),
-    path('name/', include(router.urls))
-]
+from .views import AuthViewSet
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register('api/auth', AuthViewSet, basename='auth')
+
+urlpatterns = router.urls
