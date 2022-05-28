@@ -10,13 +10,13 @@ from PIL import Image,ImageOps
 class dataProcessor:
   def __init__(self):
     return
-  
+
   def getNumericStr(self, gotStr: str):
     strBytes = gotStr.encode()
     hexStr = binascii.hexlify(strBytes)
     strNum = hexStr.decode('utf8')
     return strNum
-  
+
   def mapToSingleDigit(self, num):
     if len(str(num)) != 1:
       reminder = 0
@@ -27,17 +27,17 @@ class dataProcessor:
       return res
     else:
       return num
-  
+
   ##########################
-  
+
   def getSHA256(self, data: str):
     encData=data.encode()
     dataHash = hashlib.sha256(encData)
     dataHashStr = dataHash.hexdigest()
     return dataHashStr
-  
+
   ##########################
-  
+
   def processBiometric(self, fileName: str):
     try:
       im = Image.open(fileName)
@@ -66,7 +66,7 @@ class dataProcessor:
       dobProdHash = False
     finally:
       return dobProdHash
-  
+
   def processPass(self, password: str):
     try:
       passNumStr = self.__getNumericStr(password)
@@ -78,10 +78,10 @@ class dataProcessor:
       return passNumHash
 
   ##########################
-  
+
   __mapToSingleDigit = mapToSingleDigit
   __getNumericStr = getNumericStr
-  
+
 
 
 #########################
@@ -91,7 +91,7 @@ class secureAuth(dataProcessor):
   def __init__(self):
     super().__init__()
     return
-  
+
   def getHexInt(self, data: str):
     dataBytes = data.encode()
     dataHex = binascii.hexlify(dataBytes)
@@ -116,7 +116,7 @@ class secureAuth(dataProcessor):
     ## effective HASH
     effPassHash = self.getSHA256(effPassXOR)
     return effPassHash
-  
+
   #################
 
   __getHexInt = getHexInt
