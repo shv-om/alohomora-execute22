@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 ]
 
-AUTH_USER_MODEL = 'registration.UserRegistration'
+AUTH_USER_MODEL = 'registration.User'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

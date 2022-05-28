@@ -28,14 +28,16 @@ class EmptySerializer(serializers.Serializer):
 
 # Register
 class UserRegisterSerializer(serializers.ModelSerializer):
-    # A user serializer for registering the user
+    """
+    A user serializer for registering the user
+    """
 
     class Meta:
         model = User
         fields = ('id', 'email', 'password', 'first_name', 'last_name')
 
     def validate_email(self, value):
-        user = User.objects.filter(email=User.email)
+        user = User.objects.filter(email=value)
         if user:
             raise serializers.ValidationError("Email is already taken")
         return BaseUserManager.normalize_email(value)

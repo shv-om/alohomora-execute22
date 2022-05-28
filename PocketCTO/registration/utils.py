@@ -1,12 +1,11 @@
 # users/utils.py
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
 
 
 def get_and_authenticate_user(email, password):
-    user = authenticate(email=email, password=password)
+    user = authenticate(username=email, password=password)
     if user is None:
         raise serializers.ValidationError("Invalid username/password. Please try again!")
     return user
