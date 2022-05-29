@@ -25,7 +25,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 #####   KEYS   #####
 ## read keys from keys.enc\
-keyspath = os.path.join(os.path.join(os.getcwd(), 'analysis'), 'keys.enc')
+keyspath = os.path.join(os.getcwd(), 'keys.enc')
 with open(keyspath, 'r') as keys:
   fourKeys = keys.readlines()
 
@@ -181,7 +181,8 @@ class marketAnalyzer:
   def extractAllTweets(self, keyword, noOfTweet: int=200):
     #tweets = tweepy.Cursor(api.search, q=keyword).items(noOfTweet)
     #tweets =  get_tweets(api, query = keyword, count = noOfTweet)
-    tweets =  self.api.search(q = keyword, count = noOfTweet, lang='en')
+    print("Got query... from module: ",keyword)
+    tweets =  self.api.search_tweets(q = keyword, count = noOfTweet, lang='en')
     positive, negative, neutral, polarity = 0, 0, 0, 0
     tweet_list, neutral_list, negative_list, positive_list = [], [], [], []
     for tweet in tweets:

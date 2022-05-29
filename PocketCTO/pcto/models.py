@@ -7,7 +7,7 @@ class TeamMemberName(models.Model):
     def __str__(self):
         return self.name
 
-class market(models.Model):
+class mAnalyzer(models.Model):
     domain_keyword = models.CharField(max_length=25)
 
     def __str__(self):

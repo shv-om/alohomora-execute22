@@ -7,6 +7,9 @@ from rest_framework import generics
 
 from . import models
 
+import csv
+import json
+
 from rest_framework import viewsets, status
 from . import serializers
 
@@ -18,20 +21,36 @@ class TeamMemberNameView(viewsets.ModelViewSet):
     queryset = models.TeamMemberName.objects.all()
 
 # Market Analyzer
-from analysis.marketAnalyzer import marketAnalyzer
+from analysis.marketAnalyzer import *
 
 class marketView(viewsets.ModelViewSet):
     serializer_class = serializers.marketSerializer
-    queryset = models.market.objects.all().order_by('-id')
+    queryset = models.mAnalyzer.objects.all().order_by('-id')
+    if queryset:
+        domain_keyword = str(queryset[0]).split(' ')[0]
+        print("Domain Keyword : -->", domain_keyword)
+        ma = marketAnalyzer()
+        ma.getSentiments(domain_keyword)
 
-    domain_keyword = str(queryset[0]).split(' ')[0]
-    print("Domain Keyword : -->", domain_keyword)
-    ma = marketAnalyzer()
-    ma.getSentiments(domain_keyword)
+# Market Analysis Data
+# defining the function to convert CSV file to JSON file
+def convjson(csvFilename, jsonFilename):
+    mydata = {}
 
-    # serializer = serializers.marketAnalyzerSerializer(data=request.data)
-    # if serializer.is_valid():
-    #     serializer.save()
+    # reading the data from CSV file
+    with open(csvFilename, encoding = 'utf-8') as csvfile:
+        csvRead = csv.DictReader(csvfile)
+        # Converting rows into dictionary and adding it to data
+        for rows in csvRead:
+            mykey = rows['S. No.']
+            mydata[mykey] = rows
+
+    # dumping the data
+    with open(jsonFilename, 'w', encoding = 'utf-8') as jsonfile:
+        jsonfile.write(json.dumps(mydata, indent = 4))
+
+class analyzedata():
+    
 
 
 # class marketAnalyzerView(viewsets.ModelViewSet):
