@@ -8,23 +8,6 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 
 
-# Register API
-# class RegisterAPI(generics.GenericAPIView):
-#     # serializer_class = RegisterSerializer
-#     serializer_class = RegisterSerializer
-#
-#     def post(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         # auth_info = serializer.pop('authenticate_info')
-#         user = serializer.save()
-#         print("User: ->", UserSerializer(user, context=self.get_serializer_context()).data)
-#         return Response({
-#             "user": UserSerializer(user, context=self.get_serializer_context()).data,
-#             "authenticate_info": Authenticate_infoSerializer(user, context=self.get_serializer_context()).data,
-#             "token": AuthToken.objects.create(user)[1]
-#             })
-
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
 
@@ -33,8 +16,8 @@ class RegisterAPI(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         # auth_info = serializer.pop('authenticate_info')
         user, auth = serializer.save()
-        # print("User: ->", UserSerializer(user, context=self.get_serializer_context()).data)
-        # print("Auth info:", Authenticate_infoSerializer(auth, context=self.get_serializer_context()).data)
+        print("User: ->", UserSerializer(user, context=self.get_serializer_context()).data)
+        print("Auth info: ->", Authenticate_infoSerializer(auth, context=self.get_serializer_context()).data)
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "authenticate_info": Authenticate_infoSerializer(auth, context=self.get_serializer_context()).data,
@@ -49,5 +32,6 @@ class LoginAPI(KnoxLoginView):
         serializer = AuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
+        print(request.data)
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)

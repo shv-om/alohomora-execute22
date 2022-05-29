@@ -2,6 +2,7 @@ from rest_framework import serializers, fields
 from django.contrib.auth.models import User
 
 from . import models
+from securityModule.secureAuth import secureAuth
 
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
@@ -26,7 +27,13 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         auth_info = validated_data.pop('authenticate_info')
-        user = User.objects.create_user(validated_data['username'], validated_data['email'], validated_data['password'],)
+        passwd = validated_data['password']
+        dob = auth_info['dob']
+
+        SA = secureAuth()
+        newpass = SA.getEffectivePass(passwd, dob)
+
+        user = User.objects.create_user(validated_data['username'], validated_data['email'], newpass,)
         auth = models.Authenticate_info.objects.create(user=user, **auth_info)
 
         return (user, auth)

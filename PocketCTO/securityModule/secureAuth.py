@@ -56,7 +56,7 @@ class dataProcessor:
   def processDOB(self, dob: str):
     try:
       dob = str(dob)
-      dob = dob.split('/')
+      dob = dob.split('-')
       dobInt = int(''.join(dob))
       dobUniqueNum = self.__mapToSingleDigit(dobInt)
       dobProduct = str(dobInt * dobUniqueNum)
@@ -100,18 +100,19 @@ class secureAuth(dataProcessor):
 
   ############
 
-  def getEffectivePass(self, passw: str, DoB: str, fpData: str):
+  def getEffectivePass(self, passw: str, DoB: str, fpData: str=""):
     ## pre processing
     DoB = self.processDOB(DoB)
-    fpData = self.processBiometric(fpData)
+    #fpData = self.processBiometric(fpData)
     passw = self.processPass(passw)
     ## hex value
     DoB = self.__getHexInt(DoB)
-    fpData = self.__getHexInt(fpData)
+    #fpData = self.__getHexInt(fpData)
     passw = self.__getHexInt(passw)
     ## XORing
-    fpXORPass = fpData ^ passw
-    fpXORPassDoB = fpXORPass ^ DoB
+    #fpXORPass = fpData ^ passw
+    #fpXORPassDoB = fpXORPass ^ DoB
+    fpXORPassDoB = passw ^ DoB
     effPassXOR = str(fpXORPassDoB)
     ## effective HASH
     effPassHash = self.getSHA256(effPassXOR)

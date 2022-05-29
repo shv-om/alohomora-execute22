@@ -24,8 +24,9 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from sklearn.feature_extraction.text import CountVectorizer
 
 #####   KEYS   #####
-## read keys from keys.enc
-with open('keys.enc', 'r') as keys:
+## read keys from keys.enc\
+keyspath = os.path.join(os.path.join(os.getcwd(), 'analysis'), 'keys.enc')
+with open(keyspath, 'r') as keys:
   fourKeys = keys.readlines()
 
 ## load keys
