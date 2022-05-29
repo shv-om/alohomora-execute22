@@ -22,10 +22,15 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from sklearn.feature_extraction.text import CountVectorizer
 
 #####   KEYS   #####
-GLOBAL_consumer_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-GLOBAL_consumer_secret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-GLOBAL_access_token = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-GLOBAL_access_token_secret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+# GLOBAL_consumer_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+# GLOBAL_consumer_secret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+# GLOBAL_access_token = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+# GLOBAL_access_token_secret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+GLOBAL_consumer_key = "dxfKGBhBzI3I5rckBQDMkfetx"
+GLOBAL_consumer_secret = "z6TRjHNNGnLI9L26RMcblxjoWZ11h7c9jC0Ulkxry546AOYQUC"
+GLOBAL_access_token = "1299382645755838464-lVviwhOlr2nhsuE8MtvgohD16rQ6Hi"
+GLOBAL_access_token_secret = "Oc1CVdgU6wkJyQY1O65pRvpmL5cPAGnjcXBhOzXPBUK4U"
 
 
 ###   CLASSES   ###
@@ -34,7 +39,7 @@ class dataCleaner:
     self.stopword = None
     self.ps = None
     return
-  
+
   def remove_punct(self, text):
     text = "".join([char for char in text if char not in string.punctuation])
     text = re.sub("[0–9]+", "", text)
@@ -65,14 +70,14 @@ class dataCleaner:
     #Appliyng tokenization
     tw_list['tokenized'] = tw_list['punct'].apply(lambda x: self.tokenization(x.lower()))
     #Removing stopwords
-    self.stopword = stopword = nltk.corpus.stopwords.words('english')    
+    self.stopword = stopword = nltk.corpus.stopwords.words('english')
     tw_list['nonstop'] = tw_list['tokenized'].apply(lambda x: self.remove_stopwords(x, stopword))
     #Appliyng Stemmer
     self.ps = nltk.PorterStemmer()
     tw_list['stemmed'] = tw_list['nonstop'].apply(lambda x: self.stemming(x, self.ps))
     #tw_list.head()
     return tw_list
-  
+
   ##########
   #Cleaning Text
   def clean_text(self, text):
@@ -81,21 +86,21 @@ class dataCleaner:
     tokens = re.split('\W+', text_rc)    # tokenization
     text = [self.ps.stem(word) for word in tokens if word not in self.stopword]  # remove stopwords and stemming
     return text
-  
+
   #Appliyng Countvectorizer
   def cVectorizer(self, tw_list):
-    countVectorizer = CountVectorizer(analyzer=self.clean_text) 
+    countVectorizer = CountVectorizer(analyzer=self.clean_text)
     countVector = countVectorizer.fit_transform(tw_list["text"])
-    
+
     count_vect_df = pd.DataFrame(countVector.toarray(), columns=countVectorizer.get_feature_names())
     return count_vect_df
-  
+
   # Most Used Words
   def bestTerms(self, df):
     count = pd.DataFrame(df.sum())
     countdf = count.sort_values(0,ascending=False).head(20)
     return countdf
-  
+
   ################################################
 
   def main(self, df):
@@ -114,7 +119,7 @@ class marketAnalyzer:
     access_token = GLOBAL_access_token
     access_token_secret = GLOBAL_access_token_secret
     self.api=None
-    
+
     # attempt authentication
     try:
       # create OAuthHandler object
@@ -169,7 +174,7 @@ class marketAnalyzer:
     tw_list['text'] = tw_list.text.map(remove_rt)
     tw_list["text"] = tw_list.text.str.lower()
     return tw_list
-    
+
   def extractAllTweets(self, keyword, noOfTweet: int=200):
     #tweets = tweepy.Cursor(api.search, q=keyword).items(noOfTweet)
     #tweets =  get_tweets(api, query = keyword, count = noOfTweet)
@@ -190,7 +195,7 @@ class marketAnalyzer:
       elif pos > neg:
         positive_list.append(tweet.text)
         positive += 1
-    
+
       elif pos == neg:
         neutral_list.append(tweet.text)
         neutral += 1
