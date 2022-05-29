@@ -17,6 +17,7 @@ import os
 import pycountry
 import re
 import string
+import json
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.stem import SnowballStemmer
@@ -221,6 +222,21 @@ class marketAnalyzer:
     tweet_list.drop(columns=[0], inplace=True)
 
     return tweet_list, sentimentCounter
+  
+  def saveJson(self, jsonDict, fname):
+    with open(fname, "w") as outfile:
+      json.dump(jsonDict, outfile)
+    return
+  
+  def postProcess(self, df, indexColName, forNa=0):
+    df.reset_index(inplace=True)
+    df.rename(columns={'index':indexColName}, inplace=True)
+    df[indexColName] = df[indexColName].fillna(forNa)
+    ## dict to json
+    dictKeys = list(df[df.columns[0]])
+    dictVals = list(df[df.columns[-1]])
+    dictionary = dict(zip(dictKeys,dictVals))
+    return dictionary
 
   ###################################################
   ###################################################
@@ -235,9 +251,12 @@ class marketAnalyzer:
     sentiDF = self.sentimentAnalysis(cleanedDF)
     counter = self.count_values_in_column(sentiDF,"sentiment")
     ####### SAVING #####
-    sentimentCounter.to_csv('sentimentCounter.csv', index=False)
-    cleanedDF.to_csv('cleanedDF.csv', index=False)
-    termCountDF.to_csv('termCountDF.csv', index=False)
-    sentiDF.to_csv('sentiDF.csv', index=False)
-    counter.to_csv('counter.csv', index=False)
+    termCountDFDict = self.postProcess(termCountDF,'words',forNa=query)
+    self.saveJson(termCountDFDict, 'termCountDF.json')
+    counterFDict = self.postProcess(counter,'sentiment','negative and neutral')
+    self.saveJson(counterFDict, 'counter.json')
+    ## jsons
+    sentimentCounter.to_json('json/sentimentCounter.json')
+    cleanedDF.to_json('json/cleanedDF.json')
+    sentiDF.to_json('json/sentiDF.json')
     return
