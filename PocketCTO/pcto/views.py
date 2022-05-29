@@ -26,7 +26,7 @@ class TeamMemberNameView(viewsets.ModelViewSet):
 
 class marketView(viewsets.ModelViewSet):
     serializer_class = serializers.marketSerializer
-    queryset = models.mAnalyzer.objects.all().order_by('-id')
+    queryset = models.manalyzer.objects.all().order_by('-id')
     if queryset:
         domain_keyword = str(queryset[0]).split(' ')[0]
         print("Domain Keyword : -->", domain_keyword)

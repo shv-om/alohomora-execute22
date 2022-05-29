@@ -8,5 +8,5 @@ class TeamMemberNameSerializer(serializers.ModelSerializer):
 
 class marketSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.mAnalyzer
+        model = models.manalyzer
         fields = ('id', 'domain_keyword')
