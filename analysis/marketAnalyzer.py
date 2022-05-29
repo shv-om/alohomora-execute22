@@ -233,6 +233,7 @@ class marketAnalyzer:
     ####### SAVING #####
     sentimentCounter.to_csv('sentimentCounter.csv', index=False)
     cleanedDF.to_csv('cleanedDF.csv', index=False)
+    termCountDF.to_csv('termCountDF.csv', index=False)
     sentiDF.to_csv('sentiDF.csv', index=False)
     counter.to_csv('counter.csv', index=False)
     return
