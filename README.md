@@ -3,7 +3,8 @@
 ### A handy solution for business owners  
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-![All Contributors](https://img.shields.io/github/contributors/shv-om/alohomora-execute22?style=for-the-badge)
+![All Contributors](https://img.shields.io/github/contributors/shv-om/alohomora-execute22?style=for-the-badge)  
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->  
 
 <!--
