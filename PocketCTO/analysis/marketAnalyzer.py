@@ -24,15 +24,15 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from sklearn.feature_extraction.text import CountVectorizer
 
 #####   KEYS   #####
-# GLOBAL_consumer_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-# GLOBAL_consumer_secret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-# GLOBAL_access_token = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-# GLOBAL_access_token_secret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+## read keys from keys.enc
+with open('keys.enc', 'r') as keys:
+  fourKeys = keys.readlines()
 
-GLOBAL_consumer_key = "dxfKGBhBzI3I5rckBQDMkfetx"
-GLOBAL_consumer_secret = "z6TRjHNNGnLI9L26RMcblxjoWZ11h7c9jC0Ulkxry546AOYQUC"
-GLOBAL_access_token = "1299382645755838464-lVviwhOlr2nhsuE8MtvgohD16rQ6Hi"
-GLOBAL_access_token_secret = "Oc1CVdgU6wkJyQY1O65pRvpmL5cPAGnjcXBhOzXPBUK4U"
+## load keys
+GLOBAL_consumer_key = fourKeys[0][:-1]
+GLOBAL_consumer_secret = fourKeys[1][:-1]
+GLOBAL_access_token = fourKeys[2][:-1]
+GLOBAL_access_token_secret = fourKeys[3][:-1]
 
 
 ###   CLASSES   ###
