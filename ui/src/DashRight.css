@@ -1,0 +1,43 @@
+
+.Dashboard_head{
+    background-color: white;
+    
+}
+.DashRight__worldcloud{
+    height: 90px;
+    width: 600px;
+    margin: 100px;
+    
+}
+.Dashboard__pie{
+    height: fit-content;
+    padding: 30px;
+    width: 600px;
+    margin: 100px;
+    background-color: white;
+}
+.Dashboard__top{
+    display: flex;
+    justify-content: space-between;
+}
+.Dashboard__child{
+    flex: 0.5;
+    height: 50vh;
+    
+}
+.Dashboard__child1{
+    flex: 0.5;
+    
+}
+.Dashboard__bottom{
+    display: flex;
+    justify-content: space-between;
+}
+.Dashboard__child2{
+    flex: 0.5;
+    height: 40.4vh;
+  
+}
+.Dashboard__child21{
+    flex: 0.5;
+}

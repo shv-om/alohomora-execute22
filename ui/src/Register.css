@@ -1,0 +1,23 @@
+.Register__p{
+    
+    /* margin-top: 100px; */
+    margin-bottom: 30px;
+    font-size: 40px;
+    font-weight: 500;
+}
+.Register__body{
+    
+    display: grid;
+    place-items: center;
+}
+.Register__input{
+    width: 300px;
+    margin-bottom: 30px;
+}
+.dob{
+    color: rgb(145, 145, 145);
+    font-size: small;   
+    width: 90%;
+    
+    font-weight: 500;
+}

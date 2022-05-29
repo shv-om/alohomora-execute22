@@ -1,0 +1,48 @@
+.Home{
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    width: 100vw;
+}
+.Home__signin , .Home__register,.Home__home{
+    color: white;
+    font-size: 25px;
+    margin-right: 50px;
+    cursor: pointer;
+}
+.Header__logo{
+    height: 250px;
+    position: absolute;
+    left: 10px;
+    top: -60px;
+}
+.Home__teamname{
+    display: grid;
+    place-items: center;
+}
+
+.Home__teamname > img{
+    height: 250px;
+   
+    
+}
+.Home__teamname h1{
+    font-size: 100px;
+    
+    font-weight: 800;
+    color: rgb(9, 149, 230);
+}
+.Home__teamname p{
+    font-size: 28px;
+    color: rgb(9, 149, 230);
+    font-weight: 500;
+    
+}
+.Home__header{
+    height: 60px;
+    background-color: #6FB98F;
+}
+.Home__header{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
