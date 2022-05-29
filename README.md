@@ -1,11 +1,13 @@
-# alohomora-execute22
+# Alohomora  
+A handy solution for business owners
+
+![baner.png](assets/banner.png)
 
 
 
 
-Our Model includes
-
-1. Capital/SEED Funding
-2. Market Research
-3. Revenue Generation
-4. Team Management
+### Key Features of Alohomora
+* Capital/SEED Funding
+* Market Research
+* Revenue Generation
+* Team Management
