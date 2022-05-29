@@ -13,4 +13,5 @@ class TeamMemberNameView(viewsets.ModelViewSet):
     serializer_class = serializers.TeamMemberNameSerializer
     queryset = models.TeamMemberName.objects.all()
 
-def Analyze():pass
+def Analyze():
+    from ..analysis import marketAnalyzer

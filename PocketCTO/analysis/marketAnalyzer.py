@@ -1,5 +1,7 @@
 ## libraries
 # Import Libraries
+print("Market Analyzer Importing...")
+
 import nltk
 nltk.download('stopwords')
 nltk.download('wordnet')
