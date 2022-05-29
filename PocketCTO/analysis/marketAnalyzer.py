@@ -252,9 +252,9 @@ class marketAnalyzer:
     counter = self.count_values_in_column(sentiDF,"sentiment")
     ####### SAVING #####
     termCountDFDict = self.postProcess(termCountDF,'words',forNa=query)
-    self.saveJson(termCountDFDict, 'termCountDF.json')
+    self.saveJson(termCountDFDict, 'json/termCountDF.json')
     counterFDict = self.postProcess(counter,'sentiment','negative and neutral')
-    self.saveJson(counterFDict, 'counter.json')
+    self.saveJson(counterFDict, 'json/counter.json')
     ## jsons
     sentimentCounter.to_json('json/sentimentCounter.json')
     cleanedDF.to_json('json/cleanedDF.json')
