@@ -29,7 +29,7 @@ In this era of cutting-edge technologies, most of the startups / business models
 ## What's crazy about PCTO? 🤯  
 The **PocketCTO** brings in a combo of handy market researcher and risk analyzor packed with ultimate user friendly UI developed with `Django` & `ReactJS` and powdered by Machine Learning methors. It performs a real time scope analysis of the proposed idea & filters the highly impactful ones. It also aims to build the strategy to execute the plans at earliest and come-up with the best possible solution for the same. 
 
-While focusing on several dynamic aspects of growth in business and revenue making, the _PocketCTO_ does not ignore the security of involved data & results generated during the analysis. It is powered by [SecureAuth]() for such a high-end security.
+While focusing on several dynamic aspects of growth in business and revenue making, the _PocketCTO_ does not ignore the security of involved data & results generated during the analysis. It is powered by [SecureAuth](https://github.com/ravi-prakash1907/SecureAuth-SA) for such a high-end security.
 
 ### Key Features ✨
 > * User Friendly UI  
